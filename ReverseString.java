@@ -10,12 +10,15 @@ public class ReverseString {
 		//User message.
 		System.out.println("Enter a string : ");
 		String str = sc.nextLine();//scan value and store it.
-		
+		System.out.println("Before reverse string :"+str);
 		//Calling reverseString method
 		char charArray[] =reverseString(str);
+		String str1="";
+		//Convert Character array to string
 		for(char c:charArray)
-			System.out.print(c);
-		
+			str1 +=Character.toString(c);
+		//Display reverse string
+		System.out.println("After reverse string :"+str1);
 		//Close scanner object
 		sc.close();
 	}

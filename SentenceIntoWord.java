@@ -12,32 +12,56 @@ public class SentenceIntoWord {
 		System.out.println("Enter a sentence : ");
 		String sentence = sc.nextLine();
 		
-		//Break up the sentence into words and display
-		String[] words = sentence.split(" ");
+		String[] words = sentenceIntoWord(sentence);
 		System.out.print("Break sentence into words : ");
 		for(String w:words)
 			System.out.print(w+" ");
 		
 		// Calling sortword method
-		sortWord(words);
-
-		// Close scanner object
+		String[] Sorted_words = sortWord(words);
+		//Display sorted word
+		System.out.print("\nSorted words : ");
+		for(String w:Sorted_words)
+			System.out.print(w+" ");
+		
 		sc.close();
 	}
-	public static void sortWord(String[] words) {
-		for(int i=0; i<words.length; i++) {
-			for(int j=i; j<words.length; j++) {
-				if(words[i].length() > words[j].length()){
-					//Swaping words
-					String temp=words[j];//temporary variable
-					words[j]=words[i];
-					words[i]=temp;
+	//This method for break sentence into words
+	public static String[] sentenceIntoWord(String sentence) {
+		int count_space = 0;
+	    int index = 0;
+	    char[] charArray = sentence.toCharArray();
+
+	    for (int i = 0; i < charArray.length; i++) 
+	        if (charArray[i] == ' ') 
+	        	count_space++;
+	    
+	    String[] words = new String[count_space + 1];
+	    String temp = "";
+	    for (int i = 0; i <charArray.length; i++) {
+	        if (charArray[i] != ' ') {
+	        	temp +=charArray[i];
+	        } else {
+	        	words[index++] = temp;
+	            temp = "";
+	        }
+	    }
+	    words[index] = temp;
+	
+		return words;
+	}
+	//Method for sorted words
+	public static String[] sortWord(String[] wordsArray) {
+		for(int i=0; i<wordsArray.length; i++) {
+			for(int j=i; j<wordsArray.length; j++) {
+				if(wordsArray[i].length() > wordsArray[j].length()){
+					//Swap words
+					String temp=wordsArray[j];//temporary variable
+					wordsArray[j]=wordsArray[i];
+					wordsArray[i]=temp;
 				}
 			}
 		}
-		//Print sorted word according to the length of word
-		System.out.print("\nSorted sentense : ");
-		for(String s: words)
-		System.out.print(s+" ");
+		return wordsArray;
 	}
 }

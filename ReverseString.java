@@ -10,21 +10,23 @@ public class ReverseString {
 		//User message.
 		System.out.println("Enter a string : ");
 		String str = sc.nextLine();//scan value and store it.
-		System.out.println("Origional string : "+str);
 		
 		//Calling reverseString method
-		reverseString(str);
+		char charArray[] =reverseString(str);
+		for(char c:charArray)
+			System.out.print(c);
 		
 		//Close scanner object
 		sc.close();
 	}
-	public static void reverseString(String str) {
+	public static char[] reverseString(String str) {
+		char charArray[] =new char[str.length()];
+		int index=0;
 		for(int i=str.length()-1; i>=0; i--) {
-			//if condition used for display print statement only once.
-			if(i==str.length()-1)
-				System.out.print("Reverse string : ");
-			System.out.print(str.charAt(i));
+			charArray[index] = (str.charAt(i));
+			index++;
 		}
+		return charArray;
 	}
 
 }
